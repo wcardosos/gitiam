@@ -1,0 +1,6 @@
+{
+  "effortLevel": "high",
+  "showClearContextOnPlanAccept": true,
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "dark"
+}

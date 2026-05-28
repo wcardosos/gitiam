@@ -1,0 +1,117 @@
+{
+  "permissions": {
+    "defaultMode": "bypassPermissions",
+    "allow": [
+      "Read",
+      "Edit",
+      "MultiEdit",
+      "Write",
+      "Glob",
+      "Grep",
+      "LS",
+      "Task",
+      "WebFetch",
+      "WebSearch",
+
+      "Bash(git:*)",
+      "Bash(mvn:*)",
+      "Bash(npm:*)",
+      "Bash(npx:*)",
+      "Bash(node:*)",
+      "Bash(java:*)",
+      "Bash(cat:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(wc:*)",
+      "Bash(sort:*)",
+      "Bash(uniq:*)",
+      "Bash(diff:*)",
+      "Bash(mkdir:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)",
+      "Bash(touch:*)",
+      "Bash(chmod:*)",
+      "Bash(ls:*)",
+      "Bash(pwd)",
+      "Bash(echo:*)",
+      "Bash(sed:*)",
+      "Bash(awk:*)",
+      "Bash(tr:*)",
+      "Bash(cut:*)",
+      "Bash(tee:*)",
+      "Bash(xargs:*)",
+      "Bash(cd:*)",
+      "Bash(tree:*)",
+      "Bash(rm:*)",
+
+      "Bash(curl http://localhost:*)",
+      "Bash(curl http://127.0.0.1:*)",
+      "Bash(curl https://localhost:*)",
+      "Bash(curl https://127.0.0.1:*)",
+
+      "Bash(HUSKY=0 git commit:*)"
+    ],
+    "deny": [
+      "Bash(curl:*)",
+      "Bash(wget:*)",
+
+      "Bash(apt:*)",
+      "Bash(apt-get:*)",
+      "Bash(dpkg:*)",
+      "Bash(snap:*)",
+      "Bash(pip:*)",
+      "Bash(pip3:*)",
+      "Bash(gem install:*)",
+      "Bash(cargo install:*)",
+
+      "Bash(rm -rf /*)",
+      "Bash(rm -rf ./*)",
+      "Bash(rm -rf .)",
+
+      "Bash(sudo:*)",
+      "Bash(su:*)",
+      "Bash(eval:*)",
+
+      "Bash(bash:*)",
+      "Bash(sh:*)",
+      "Bash(zsh:*)",
+      "Bash(dash:*)",
+
+      "Bash(python:*)",
+      "Bash(python3:*)",
+      "Bash(perl:*)",
+      "Bash(ruby:*)",
+      "Bash(php:*)",
+
+      "Bash(ssh:*)",
+      "Bash(scp:*)",
+      "Bash(netcat:*)",
+      "Bash(nc:*)",
+      "Bash(telnet:*)",
+      "Bash(nmap:*)",
+      "Bash(socat:*)",
+
+      "Bash(docker:*)",
+      "Bash(podman:*)",
+
+      "Bash(base64:*)",
+      "Bash(xxd:*)",
+      "Bash(dd:*)",
+      "Bash(mkfifo:*)",
+
+      "Bash(git clone:*)",
+      "Bash(git push:*)",
+      "Bash(git pull:*)",
+      "Bash(git fetch:*)",
+      "Bash(git merge:*)",
+      "Bash(git reset --hard:*)",
+
+      "Write(.claude/settings.json)",
+      "Write(.claude/settings.local.json)",
+      "Write(.devcontainer/*)",
+      "Write(.env*)"
+    ]
+  }
+}

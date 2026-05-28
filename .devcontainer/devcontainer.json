@@ -1,0 +1,30 @@
+{
+  "name": "gitiam",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": { "version": "lts" },
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+
+  "postCreateCommand": "curl -fsSL https://claude.ai/install.sh | bash",
+
+  "workspaceFolder": "/workspace",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,Z",
+
+  "runArgs": [
+    "--userns=keep-id",
+    "--network=host"
+  ],
+  "containerUser": "vscode",
+  "updateRemoteUserUID": true,
+
+  "remoteEnv": {
+    "CLAUDE_CONFIG_DIR": "/workspace/.claude"
+  },
+
+  "mounts": [
+    "source=${env:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,readonly",
+    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+  ]
+}
