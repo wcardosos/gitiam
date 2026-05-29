@@ -111,9 +111,12 @@ Lists registered identities, marks the active one with `*`. Does not show ssh ke
 **Normal case:**
 
 ```
-  personal      wcardosos              wcardosos@gmail.com
-* work          wagner-cardoso-matrix  wagner@matrix.com.br
+  NAME      USER                   EMAIL
+  personal  wcardosos              wcardosos@gmail.com
+* work      wagner-cardoso-matrix  wagner@matrix.com.br
 ```
+
+The header row is dim. Inactive identity names are dim; the active identity's name is bold and its `*` marker is green.
 
 **Empty list:**
 
@@ -336,7 +339,7 @@ Applicable to all commands:
   - `✓` green for success.
   - `⚠` yellow for warning.
   - `✗` red for error.
-  - Identity names and paths with subtle emphasis (light gray or bold, no aggressive color).
+  - `gitiam list`: dim header row; inactive identity names dim; active identity name bold with a green `*` marker. The green marker is the one deliberate accent — output is otherwise not colorized.
 - **No decorative emojis** beyond check/warning/cross. No ASCII art.
 
 ---
