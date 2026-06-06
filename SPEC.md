@@ -17,7 +17,7 @@ Stack aligned with `rulebox` (same TypeScript, same main libraries). Scope delib
 - **Language:** TypeScript
 - **Build:** tsup (same as rulebox)
 - **CLI:** commander
-- **Interactivity:** @clack/prompts (used only in `add`)
+- **Interactivity:** @clack/prompts (used in `add` and `remove`)
 - **Colors:** picocolors
 - **Tests:** vitest (unit tests on config/ssh/git, no e2e)
 - **Node stdlib:** `fs/promises`, `path`, `os`, `child_process` (use `execFile`/`spawn`, **never `exec`** — exec passes through a shell and risks injection with paths containing spaces)

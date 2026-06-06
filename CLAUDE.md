@@ -17,7 +17,7 @@ For full functional specification, see `SPEC.md` in the project root. That docum
 - **Language:** TypeScript
 - **Build:** tsup
 - **CLI framework:** commander
-- **Interactivity:** @clack/prompts (used only in `add`)
+- **Interactivity:** @clack/prompts (used in `add` and `remove`)
 - **Colors:** picocolors
 - **Tests:** vitest (unit tests on config/ssh/git, no e2e)
 - **Node stdlib:** `fs/promises`, `path`, `os`, `child_process`
