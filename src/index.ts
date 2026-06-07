@@ -3,6 +3,7 @@ import { checkPlatform } from './platform';
 import { addCommand } from './commands/add';
 import { listCommand } from './commands/list';
 import { removeCommand } from './commands/remove';
+import { useCommand } from './commands/use';
 
 checkPlatform();
 
@@ -24,5 +25,10 @@ program
   .description('Remove a registered identity')
   .option('-y, --yes', 'Skip the confirmation prompt')
   .action(removeCommand);
+
+program
+  .command('use <name>')
+  .description('Atomically apply an identity: SSH key and global git config')
+  .action(useCommand);
 
 void program.parseAsync(process.argv);
