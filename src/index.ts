@@ -5,11 +5,14 @@ import { listCommand } from './commands/list';
 import { removeCommand } from './commands/remove';
 import { useCommand } from './commands/use';
 import { checkCommand } from './commands/check';
+import { defaultCommand } from './commands/default';
 
 checkPlatform();
 
 const program = new Command();
 program.name('gitiam').description('Atomic git identity switching');
+
+program.action(defaultCommand);
 
 program
   .command('add <name>')
