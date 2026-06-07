@@ -95,6 +95,9 @@ describe('useCommand', () => {
     mockSsh.addKey.mockResolvedValue(undefined);
     mockGit.setGlobalUser.mockResolvedValue(undefined);
     mockConfig.writeActive.mockResolvedValue(undefined);
+    // Phase 3 runs the default-mode check after writeActive.
+    mockConfig.readActive.mockResolvedValue('personal');
+    mockGit.getResolvedEmail.mockResolvedValue('wcardosos@gmail.com');
 
     const order: string[] = [];
     mockSsh.clearAgent.mockImplementation(async () => {
@@ -117,6 +120,24 @@ describe('useCommand', () => {
     const expandedKey = path.join(os.homedir(), '.ssh/id_personal');
     expect(mockSsh.addKey).toHaveBeenCalledWith(expandedKey);
     expect(mockGit.setGlobalUser).toHaveBeenCalledWith('wcardosos', 'wcardosos@gmail.com');
+    expect(mockConfig.writeActive).toHaveBeenCalledWith('personal');
+  });
+
+  it('still succeeds when the Phase 3 check finds a mismatch in the directory', async () => {
+    mockConfig.readIdentities.mockResolvedValue(identities);
+    mockFsp.access.mockResolvedValue(undefined as never);
+    mockSsh.isAgentRunning.mockReturnValue(true);
+    mockSsh.clearAgent.mockResolvedValue(undefined);
+    mockSsh.addKey.mockResolvedValue(undefined);
+    mockGit.setGlobalUser.mockResolvedValue(undefined);
+    mockConfig.writeActive.mockResolvedValue(undefined);
+    mockConfig.readActive.mockResolvedValue('personal');
+    // Directory resolves a divergent email — Phase 3 warns but must not exit 1.
+    mockGit.getResolvedEmail.mockResolvedValue('wagner@matrix.com.br');
+
+    await expect(useCommand('personal')).resolves.toBeUndefined();
+
+    expect(process.exit).not.toHaveBeenCalled();
     expect(mockConfig.writeActive).toHaveBeenCalledWith('personal');
   });
 

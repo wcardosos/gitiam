@@ -6,6 +6,7 @@ import { isAgentRunning, clearAgent, addKey } from '../ssh';
 import { setGlobalUser } from '../git';
 import { ConfigError, SshError, GitError } from '../errors';
 import { sym } from '../ui';
+import { checkCommand } from './check';
 import type { Identity } from '../types';
 
 export async function useCommand(name: string): Promise<void> {
@@ -101,4 +102,10 @@ export async function useCommand(name: string): Promise<void> {
   console.log(`${sym.ok} Cleared ssh-agent and loaded ${expanded}`);
   console.log(`${sym.ok} Set git user.name and user.email`);
   console.log(`${sym.ok} Active identity: ${name}`);
+
+  // Phase 3: surface any mismatch in the current directory. Informational
+  // only — the check result never changes `use`'s exit code.
+  console.log('');
+  console.log('Checking current directory...');
+  await checkCommand();
 }

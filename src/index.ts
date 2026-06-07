@@ -4,6 +4,7 @@ import { addCommand } from './commands/add';
 import { listCommand } from './commands/list';
 import { removeCommand } from './commands/remove';
 import { useCommand } from './commands/use';
+import { checkCommand } from './commands/check';
 
 checkPlatform();
 
@@ -30,5 +31,11 @@ program
   .command('use <name>')
   .description('Atomically apply an identity: SSH key and global git config')
   .action(useCommand);
+
+program
+  .command('check')
+  .description('Compare the active identity with the git identity resolved here')
+  .option('--strict', 'Silent on match, exit 1 on divergence (for pre-commit hooks)')
+  .action(checkCommand);
 
 void program.parseAsync(process.argv);
