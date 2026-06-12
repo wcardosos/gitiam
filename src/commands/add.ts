@@ -32,6 +32,10 @@ function expandHome(p: string): string {
   return p.startsWith('~') ? path.join(os.homedir(), p.slice(1)) : p;
 }
 
+export function normalizeSshKeyPath(raw: string): string {
+  return path.resolve(expandHome(raw));
+}
+
 export async function addCommand(name: string): Promise<void> {
   if (!isValidSlug(name)) {
     process.stderr.write(
@@ -94,7 +98,7 @@ export async function addCommand(name: string): Promise<void> {
       ...identities,
       {
         name,
-        sshKeyPath: answers.sshKeyPath,
+        sshKeyPath: normalizeSshKeyPath(answers.sshKeyPath),
         gitUserName: answers.gitUserName.trim(),
         gitUserEmail: answers.gitUserEmail,
       },

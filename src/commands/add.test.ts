@@ -5,7 +5,12 @@ import * as path from 'node:path';
 vi.mock('node:fs/promises');
 import * as fsp from 'node:fs/promises';
 
-import { isValidSlug, isValidEmail, validateSshKeyPath } from './add';
+import {
+  isValidSlug,
+  isValidEmail,
+  validateSshKeyPath,
+  normalizeSshKeyPath,
+} from './add';
 
 const mockFsp = vi.mocked(fsp);
 
@@ -104,5 +109,21 @@ describe('validateSshKeyPath', () => {
     await validateSshKeyPath('~/.ssh/key');
     const expectedPath = path.join(os.homedir(), '.ssh/key');
     expect(mockFsp.access).toHaveBeenCalledWith(expectedPath, expect.any(Number));
+  });
+});
+
+describe('normalizeSshKeyPath', () => {
+  it('expands a ~-based path to an absolute homedir path', () => {
+    expect(normalizeSshKeyPath('~/.ssh/id_rsa')).toBe(
+      path.join(os.homedir(), '.ssh/id_rsa')
+    );
+  });
+
+  it('resolves a relative path to an absolute path', () => {
+    expect(normalizeSshKeyPath('.ssh/file')).toBe(path.resolve('.ssh/file'));
+  });
+
+  it('leaves an already-absolute path unchanged', () => {
+    expect(normalizeSshKeyPath('/home/u/.ssh/k')).toBe('/home/u/.ssh/k');
   });
 });
