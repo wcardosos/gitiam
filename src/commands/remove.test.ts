@@ -6,14 +6,14 @@ const identities: Identity[] = [
   {
     name: 'personal',
     sshKeyPath: '/home/user/.ssh/id_personal',
-    gitUserName: 'wcardosos',
-    gitUserEmail: 'wcardosos@gmail.com',
+    gitUserName: 'octocat',
+    gitUserEmail: 'octocat@example.com',
   },
   {
     name: 'work',
     sshKeyPath: '/home/user/.ssh/id_work',
-    gitUserName: 'wagner-cardoso-matrix',
-    gitUserEmail: 'wagner@matrix.com.br',
+    gitUserName: 'octocat-work',
+    gitUserEmail: 'octocat@work.example.com',
   },
 ];
 
