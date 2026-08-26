@@ -1,9 +1,11 @@
 {
   "name": "gitiam",
-  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
 
   "features": {
-    "ghcr.io/devcontainers/features/node:1": { "version": "lts" },
+    "ghcr.io/devcontainers/features/node:1": { "version": "lts", "nodeGypDependencies": false },
     "ghcr.io/devcontainers/features/git:1": {}
   },
 
@@ -14,7 +16,8 @@
 
   "runArgs": [
     "--userns=keep-id",
-    "--network=host"
+    "--network=host",
+    "--tmpfs=/tmp:rw,exec,mode=1777"
   ],
   "containerUser": "vscode",
   "updateRemoteUserUID": true,
@@ -24,7 +27,6 @@
   },
 
   "mounts": [
-    "source=${env:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,readonly",
-    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+    "source=${env:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,readonly"
   ]
 }

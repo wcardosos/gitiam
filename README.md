@@ -1,5 +1,7 @@
 # gitiam
 
+![CI](https://github.com/wcardosos/gitiam/actions/workflows/ci.yml/badge.svg)
+
 Atomic git identity switching for the shell.
 
 ## Motivation

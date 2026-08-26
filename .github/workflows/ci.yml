@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - name: Test with coverage
+        shell: bash
+        run: npm run test:coverage | tee /tmp/coverage.log
+      - name: Coverage summary
+        if: always()
+        shell: bash
+        run: |
+          # The test step may never have run (an earlier step failed), so a
+          # missing log is not an error here.
+          if [ ! -s /tmp/coverage.log ]; then
+            echo 'No coverage output was produced.' >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          {
+            echo '```'
+            sed -n '/Coverage summary/,$p' /tmp/coverage.log
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+      - run: npm run build
+      - name: CLI smoke test
+        run: node dist/index.js --help

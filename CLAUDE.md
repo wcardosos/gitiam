@@ -19,7 +19,7 @@ For full functional specification, see `SPEC.md` in the project root. That docum
 - **CLI framework:** commander
 - **Interactivity:** @clack/prompts (used in `add` and `remove`)
 - **Colors:** picocolors
-- **Tests:** vitest (unit tests on config/ssh/git, no e2e)
+- **Tests:** vitest (unit tests on config/ssh/git, no e2e), plus `@vitest/coverage-v8` as the coverage provider for `npm run test:coverage`
 - **Node stdlib:** `fs/promises`, `path`, `os`, `child_process`
 
 No additional dependencies. Validations (path exists, email format, slug shape) are done manually with regex and fs. Do not introduce zod, fs-extra, execa, chalk, or similar libraries — the stack is intentionally minimal.
@@ -176,6 +176,9 @@ npm test
 
 # Run tests in watch mode
 npm run test:watch
+
+# Run tests with a coverage report
+npm run test:coverage
 
 # Type-check without emitting
 npm run typecheck
