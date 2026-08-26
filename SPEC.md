@@ -52,14 +52,14 @@ Two files in `~/.config/gitiam/`:
     {
       "name": "personal",
       "sshKeyPath": "~/.ssh/id_ed25519_personal",
-      "gitUserName": "wcardosos",
-      "gitUserEmail": "wcardosos@gmail.com"
+      "gitUserName": "octocat",
+      "gitUserEmail": "octocat@example.com"
     },
     {
       "name": "work",
       "sshKeyPath": "~/.ssh/id_ed25519_work",
-      "gitUserName": "wagner-cardoso-matrix",
-      "gitUserEmail": "wagner@matrix.com.br"
+      "gitUserName": "octocat-work",
+      "gitUserEmail": "octocat@work.example.com"
     }
   ]
 }
@@ -87,8 +87,8 @@ Shows the active identity + help hint. Always exit 0.
 
 ```
 Active identity: personal
-  user:    wcardosos
-  email:   wcardosos@gmail.com
+  user:    octocat
+  email:   octocat@example.com
   ssh key: ~/.ssh/id_ed25519_personal
 
 Run `gitiam --help` for available commands.
@@ -111,9 +111,9 @@ Lists registered identities, marks the active one with `*`. Does not show ssh ke
 **Normal case:**
 
 ```
-  NAME      USER                   EMAIL
-  personal  wcardosos              wcardosos@gmail.com
-* work      wagner-cardoso-matrix  wagner@matrix.com.br
+  NAME      USER          EMAIL
+  personal  octocat       octocat@example.com
+* work      octocat-work  octocat@work.example.com
 ```
 
 The header row is dim. Inactive identity names are dim; the active identity's name is bold and its `*` marker is green.
@@ -140,8 +140,8 @@ Registers an identity interactively via @clack/prompts.
 ```
 $ gitiam add personal
 ? Path to SSH key: ~/.ssh/id_ed25519_personal
-? Git user name: wcardosos
-? Git user email: wcardosos@gmail.com
+? Git user name: octocat
+? Git user email: octocat@example.com
 
 ✓ Identity "personal" added.
 ```
@@ -222,8 +222,8 @@ Validating...
 Applying...
   ✓ ssh-agent cleared
   ✓ SSH key loaded
-  ✓ git config --global user.name = wcardosos
-  ✓ git config --global user.email = wcardosos@gmail.com
+  ✓ git config --global user.name = octocat
+  ✓ git config --global user.email = octocat@example.com
 
 ✓ Active identity: personal
 
@@ -260,7 +260,7 @@ Resolution is done via `git config user.email` executed in the current folder �
 ```
 $ gitiam check
 Active identity: personal
-Current directory: /Users/wagner/Desenvolvimento/wcardosos/rulebox
+Current directory: /home/octocat/projects/my-app
 
 ✓ Local gitconfig matches active identity.
 ```
@@ -269,13 +269,13 @@ Current directory: /Users/wagner/Desenvolvimento/wcardosos/rulebox
 
 ```
 $ gitiam check
-Active identity: personal (wcardosos@gmail.com)
-Current directory: /Users/wagner/Desenvolvimento/zrp/some-repo
+Active identity: personal (octocat@example.com)
+Current directory: /home/octocat/work/some-repo
 
-⚠ Resolved user.email here is wagner@matrix.com.br,
-  which differs from active identity (wcardosos@gmail.com).
+⚠ Resolved user.email here is octocat@work.example.com,
+  which differs from active identity (octocat@example.com).
 
-  Commits in this directory will be authored as wagner@matrix.com.br.
+  Commits in this directory will be authored as octocat@work.example.com.
   If this is intentional (e.g. includeIf by path), no action needed.
   Otherwise, run `gitiam use <correct-identity>` or remove the local override.
 ```
@@ -303,9 +303,9 @@ Same detection behavior, but different exit codes. Designed to run in a pre-comm
 **Error output (mismatch):**
 
 ```
-gitiam: identity mismatch in /Users/wagner/Desenvolvimento/wcardosos/foo
-  active:   personal (wcardosos@gmail.com)
-  resolved: wagner@matrix.com.br
+gitiam: identity mismatch in /home/octocat/projects/my-app
+  active:   personal (octocat@example.com)
+  resolved: octocat@work.example.com
 ```
 
 **Usage in pre-commit hook (reference, not auto-installed):**

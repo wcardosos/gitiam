@@ -12,8 +12,8 @@ const mockConfig = vi.mocked(config);
 const identity: Identity = {
   name: 'personal',
   sshKeyPath: '~/.ssh/id_ed25519_personal',
-  gitUserName: 'wcardosos',
-  gitUserEmail: 'wcardosos@gmail.com',
+  gitUserName: 'octocat',
+  gitUserEmail: 'octocat@example.com',
 };
 
 class ExitError extends Error {
@@ -35,8 +35,8 @@ describe('formatActive', () => {
   it('renders the detail block with aligned labels and all values', () => {
     const out = formatActive(identity);
     expect(out).toContain('Active identity: personal');
-    expect(out).toContain('user:    wcardosos');
-    expect(out).toContain('email:   wcardosos@gmail.com');
+    expect(out).toContain('user:    octocat');
+    expect(out).toContain('email:   octocat@example.com');
     expect(out).toContain('ssh key: ~/.ssh/id_ed25519_personal');
   });
 

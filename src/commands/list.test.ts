@@ -6,22 +6,22 @@ const identities: Identity[] = [
   {
     name: 'personal',
     sshKeyPath: '/home/user/.ssh/id_personal',
-    gitUserName: 'wcardosos',
-    gitUserEmail: 'wcardosos@gmail.com',
+    gitUserName: 'octocat',
+    gitUserEmail: 'octocat@example.com',
   },
   {
     name: 'work',
     sshKeyPath: '/home/user/.ssh/id_work',
-    gitUserName: 'wagner-cardoso-matrix',
-    gitUserEmail: 'wagner@matrix.com.br',
+    gitUserName: 'octocat-work',
+    gitUserEmail: 'octocat@work.example.com',
   },
 ];
 
 describe('formatList', () => {
   it('marks the active row with "* " and others with "  "', () => {
     const lines = formatList(identities, 'work').split('\n');
-    const workLine = lines.find((l) => l.includes('wagner@matrix.com.br'))!;
-    const personalLine = lines.find((l) => l.includes('wcardosos@gmail.com'))!;
+    const workLine = lines.find((l) => l.includes('octocat@work.example.com'))!;
+    const personalLine = lines.find((l) => l.includes('octocat@example.com'))!;
     expect(workLine.startsWith('* ')).toBe(true);
     expect(personalLine.startsWith('  ')).toBe(true);
   });

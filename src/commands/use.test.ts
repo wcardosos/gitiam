@@ -24,14 +24,14 @@ const identities: Identity[] = [
   {
     name: 'personal',
     sshKeyPath: '~/.ssh/id_personal',
-    gitUserName: 'wcardosos',
-    gitUserEmail: 'wcardosos@gmail.com',
+    gitUserName: 'octocat',
+    gitUserEmail: 'octocat@example.com',
   },
   {
     name: 'work',
     sshKeyPath: '/home/user/.ssh/id_work',
-    gitUserName: 'wagner-cardoso-matrix',
-    gitUserEmail: 'wagner@matrix.com.br',
+    gitUserName: 'octocat-work',
+    gitUserEmail: 'octocat@work.example.com',
   },
 ];
 
@@ -97,7 +97,7 @@ describe('useCommand', () => {
     mockConfig.writeActive.mockResolvedValue(undefined);
     // Phase 3 runs the default-mode check after writeActive.
     mockConfig.readActive.mockResolvedValue('personal');
-    mockGit.getResolvedEmail.mockResolvedValue('wcardosos@gmail.com');
+    mockGit.getResolvedEmail.mockResolvedValue('octocat@example.com');
 
     const order: string[] = [];
     mockSsh.clearAgent.mockImplementation(async () => {
@@ -119,7 +119,7 @@ describe('useCommand', () => {
 
     const expandedKey = path.join(os.homedir(), '.ssh/id_personal');
     expect(mockSsh.addKey).toHaveBeenCalledWith(expandedKey);
-    expect(mockGit.setGlobalUser).toHaveBeenCalledWith('wcardosos', 'wcardosos@gmail.com');
+    expect(mockGit.setGlobalUser).toHaveBeenCalledWith('octocat', 'octocat@example.com');
     expect(mockConfig.writeActive).toHaveBeenCalledWith('personal');
   });
 
@@ -133,7 +133,7 @@ describe('useCommand', () => {
     mockConfig.writeActive.mockResolvedValue(undefined);
     mockConfig.readActive.mockResolvedValue('personal');
     // Directory resolves a divergent email — Phase 3 warns but must not exit 1.
-    mockGit.getResolvedEmail.mockResolvedValue('wagner@matrix.com.br');
+    mockGit.getResolvedEmail.mockResolvedValue('octocat@work.example.com');
 
     await expect(useCommand('personal')).resolves.toBeUndefined();
 

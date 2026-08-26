@@ -16,8 +16,8 @@ const identities: Identity[] = [
   {
     name: 'personal',
     sshKeyPath: '~/.ssh/id_personal',
-    gitUserName: 'wcardosos',
-    gitUserEmail: 'wcardosos@gmail.com',
+    gitUserName: 'octocat',
+    gitUserEmail: 'octocat@example.com',
   },
 ];
 
@@ -58,7 +58,7 @@ describe('checkCommand — default mode', () => {
   it('exits 0 on match', async () => {
     mockConfig.readActive.mockResolvedValue('personal');
     mockConfig.readIdentities.mockResolvedValue(identities);
-    mockGit.getResolvedEmail.mockResolvedValue('wcardosos@gmail.com');
+    mockGit.getResolvedEmail.mockResolvedValue('octocat@example.com');
 
     await expect(checkCommand({})).resolves.toBeUndefined();
 
@@ -69,7 +69,7 @@ describe('checkCommand — default mode', () => {
   it('exits 0 on mismatch (informative, non-blocking)', async () => {
     mockConfig.readActive.mockResolvedValue('personal');
     mockConfig.readIdentities.mockResolvedValue(identities);
-    mockGit.getResolvedEmail.mockResolvedValue('wagner@matrix.com.br');
+    mockGit.getResolvedEmail.mockResolvedValue('octocat@work.example.com');
 
     await expect(checkCommand({})).resolves.toBeUndefined();
 
@@ -100,7 +100,7 @@ describe('checkCommand — strict mode', () => {
   it('exits 0 silently on match', async () => {
     mockConfig.readActive.mockResolvedValue('personal');
     mockConfig.readIdentities.mockResolvedValue(identities);
-    mockGit.getResolvedEmail.mockResolvedValue('wcardosos@gmail.com');
+    mockGit.getResolvedEmail.mockResolvedValue('octocat@example.com');
 
     await expect(checkCommand({ strict: true })).resolves.toBeUndefined();
 
@@ -112,7 +112,7 @@ describe('checkCommand — strict mode', () => {
   it('exits 1 and writes to stderr on mismatch', async () => {
     mockConfig.readActive.mockResolvedValue('personal');
     mockConfig.readIdentities.mockResolvedValue(identities);
-    mockGit.getResolvedEmail.mockResolvedValue('wagner@matrix.com.br');
+    mockGit.getResolvedEmail.mockResolvedValue('octocat@work.example.com');
 
     await expect(checkCommand({ strict: true })).rejects.toMatchObject({ code: 1 });
 
