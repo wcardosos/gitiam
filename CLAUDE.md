@@ -190,10 +190,10 @@ For local testing of the global install behavior, use `npm link` from the projec
 
 ## Distribution
 
-- Public npm package: **`gitiam`**.
+- Public npm package: **`@wcardosos/gitiam`**.
 - `bin` field in `package.json` points to the compiled entry.
 - Shebang `#!/usr/bin/env node` at the top of the entry file.
-- README covers installation (`npm i -g gitiam`), command examples, and pre-commit hook setup.
+- README covers installation (`npm i -g @wcardosos/gitiam`), command examples, and pre-commit hook setup.
 
 No Homebrew formula in v1.
 

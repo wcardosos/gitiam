@@ -1,13 +1,13 @@
 # gitiam
 
-[![npm version](https://img.shields.io/npm/v/gitiam.svg)](https://www.npmjs.com/package/gitiam)
-[![license](https://img.shields.io/npm/l/gitiam.svg)](./LICENSE)
+[![npm version](https://img.shields.io/npm/v/@wcardosos/gitiam.svg)](https://www.npmjs.com/package/@wcardosos/gitiam)
+[![license](https://img.shields.io/npm/l/@wcardosos/gitiam.svg)](./LICENSE)
 ![CI](https://github.com/wcardosos/gitiam/actions/workflows/ci.yml/badge.svg)
 
 Atomic git identity switching for the shell.
 
 ```bash
-npm i -g gitiam
+npm i -g @wcardosos/gitiam
 gitiam add personal      # register an identity
 gitiam use personal      # apply it: ssh key + user.name + user.email
 gitiam check             # verify what git actually resolves here
@@ -45,13 +45,13 @@ The two are not mutually exclusive — see [Working alongside `includeIf`](#work
 ## Installation
 
 ```bash
-npm i -g gitiam
+npm i -g @wcardosos/gitiam
 ```
 
 or with pnpm:
 
 ```bash
-pnpm add -g gitiam
+pnpm add -g @wcardosos/gitiam
 ```
 
 ## Usage
@@ -375,7 +375,7 @@ native Windows environment at startup and exits with a message suggesting WSL.
 ## Uninstall
 
 ```bash
-npm uninstall -g gitiam
+npm uninstall -g @wcardosos/gitiam
 rm -rf ~/.config/gitiam
 ```
 

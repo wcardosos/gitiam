@@ -394,10 +394,10 @@ Unit tests with vitest. Focus on critical points:
 
 ## Distribution
 
-- Public npm package: **`gitiam`** (name confirmed available).
+- Public npm package: **`@wcardosos/gitiam`**.
 - `bin` in `package.json` pointing to the compiled entry.
 - Shebang `#!/usr/bin/env node` at the entry file.
-- README with installation (`npm i -g gitiam` or `pnpm add -g gitiam`), examples of each command, and a section about the pre-commit hook.
+- README with installation (`npm i -g @wcardosos/gitiam` or `pnpm add -g @wcardosos/gitiam`), examples of each command, and a section about the pre-commit hook.
 
 No Homebrew formula in v1. Can come later.
 
