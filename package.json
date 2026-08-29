@@ -1,12 +1,16 @@
 {
-  "name": "gitiam",
+  "name": "@wcardosos/gitiam",
   "version": "0.1.0",
   "description": "Atomic git identity switching for the shell",
+  "type": "module",
   "bin": {
-    "gitiam": "dist/index.js"
+    "gitiam": "dist/index.cjs"
   },
   "files": [
-    "dist"
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "dev": "tsup --watch",
@@ -20,6 +24,9 @@
     "node": ">=20"
   },
   "license": "MIT",
+  "keywords": ["git", "ssh", "identity", "cli"],
+  "repository": { "type": "git", "url": "git+https://github.com/wcardosos/gitiam.git" },
+  "publishConfig": { "access": "public" },
   "dependencies": {
     "@clack/prompts": "^1.4.0",
     "commander": "^14.0.3",

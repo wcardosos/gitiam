@@ -44,4 +44,4 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
       - run: npm run build
       - name: CLI smoke test
-        run: node dist/index.js --help
+        run: node dist/index.cjs --help
